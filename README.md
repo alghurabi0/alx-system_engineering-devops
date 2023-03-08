@@ -1,2 +1,2 @@
-description of 
-course
+basic desicreption
+lala

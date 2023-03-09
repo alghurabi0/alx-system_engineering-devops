@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod -R +X /alx-system_engineering-devopx/0x01-shell_permissions
+chmod -R +X /.

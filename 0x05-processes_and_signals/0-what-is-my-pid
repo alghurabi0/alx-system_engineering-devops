@@ -1,0 +1,4 @@
+#!/bin/env bash
+# generate pid of this script
+
+echo $$

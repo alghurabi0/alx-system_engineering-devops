@@ -1,0 +1,15 @@
+#!/bin/bash
+# Start the 4-to_infinity_and_beyond script and put it in the background
+
+./4-to_infinity_and_beyond &
+
+# Get the PID of the 4-to_infinity_and_beyond script
+child_pid=$!
+
+# Wait for a few seconds
+sleep 5
+
+# Use pkill to stop the entire process group of the 4-to_infinity_and_beyond script
+pkill -g "$child_pid"
+
+echo "Signal sent to stop '4-to_infinity_and_beyond' process."

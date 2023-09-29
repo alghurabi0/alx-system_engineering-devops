@@ -1,0 +1,7 @@
+#!/bin/env bash
+# Function to handle cleanup
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done

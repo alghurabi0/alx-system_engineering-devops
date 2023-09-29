@@ -1,0 +1,46 @@
+#!/bin/env bash
+# Define the path to the manage_my_process script
+
+MANAGE_MY_PROCESS_SCRIPT="./manage_my_process"
+
+# Function to start the manage_my_process script
+start() {
+    # Check if the manage_my_process script is already running
+    if pgrep -f "$MANAGE_MY_PROCESS_SCRIPT" > /dev/null; then
+        echo "manage_my_process is already running."
+    else
+        # Start the manage_my_process script
+        $MANAGE_MY_PROCESS_SCRIPT start
+    fi
+}
+
+# Function to stop the manage_my_process script
+stop() {
+    # Stop the manage_my_process script
+    $MANAGE_MY_PROCESS_SCRIPT stop
+}
+
+# Function to restart the manage_my_process script
+restart() {
+    # Restart the manage_my_process script
+    $MANAGE_MY_PROCESS_SCRIPT restart
+}
+
+# Check for the provided argument
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0

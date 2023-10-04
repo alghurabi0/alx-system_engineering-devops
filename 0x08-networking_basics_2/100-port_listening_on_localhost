@@ -1,0 +1,4 @@
+#!/bin/bash
+# Listen on port 98 on localhost and print incoming data
+
+nc -l -p 98 -k

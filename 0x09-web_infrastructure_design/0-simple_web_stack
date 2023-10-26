@@ -1,0 +1,25 @@
+https://imgur.com/x7GlCSL
+
+Let me explain the key components and their roles:
+
+1-Server: This refers to a physical or virtual machine responsible for hosting your web application.
+
+2-Domain Name: The domain name (www.foobar.com) is the user-friendly address that users type in their web browsers to access your website. It's essential for human readability.
+
+3-DNS Record for www: The "www" is typically a CNAME (Canonical Name) DNS record that points to the A Record of your server's IP address (in this case, 8.8.8.8).
+
+4-Web Server (Nginx): Nginx is responsible for handling incoming HTTP requests. It acts as a reverse proxy, forwarding requests to the application server, and serving static content like images and CSS files. Nginx plays a key role in load balancing and handling SSL/TLS encryption.
+
+5-Application Server: This is where your web application code resides. It handles dynamic content generation, processes user requests, communicates with the database, and sends responses back to Nginx.
+
+6-Database (MySQL): The database stores and manages the website's data. It can be queried by the application server to retrieve or update information, such as user data, content, or configuration.
+
+7-Communication with User's Computer: Communication between the server and the user's computer occurs via HTTP/HTTPS protocols. The user's browser sends an HTTP request to the server, which processes the request, retrieves data from the database if necessary, and sends an HTTP response back to the user's browser.
+
+Now, let's address the issues with this infrastructure:
+
+1-Single Point of Failure (SPOF): This setup has a single server, making it vulnerable to hardware failures. If the server goes down, the website becomes inaccessible. To mitigate this, you can consider redundancy and failover strategies, such as load balancing with multiple servers.
+
+2-Downtime During Maintenance: When performing maintenance tasks, such as deploying new code that requires restarting the web server or updating the database, the website may experience downtime. To minimize this, you can implement a staging environment for testing and use strategies like rolling updates.
+
+3-Scalability: This infrastructure may struggle to handle a sudden surge in traffic. To address scalability issues, you can implement load balancing across multiple servers and consider using cloud services that allow easy scaling.

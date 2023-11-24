@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# create an rsa ssh key
+
+private_key="school"
+
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/"$private_key" -N "betty"

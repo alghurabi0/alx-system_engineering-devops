@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# debug and configure apache to run on port 8080:80 and return a page
+echo "ServerName localhost" >> /etc/apache2.conf
+service apache2 start

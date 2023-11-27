@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 # configuring a new ubuntu machine to install nginx and serve a hello world page
 
 apt-get update

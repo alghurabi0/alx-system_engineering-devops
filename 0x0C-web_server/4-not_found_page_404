@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# configure a new ubuntu machine to install nginx and serve a hello page on the root
+# and redirect to a different page on /redirect_me, and create a not found page
+
+sudo apt -y update
+sudo apt -y install nginx
+echo "Hello World!" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+sudo rm /etc/nginx/sites-available/default
+
+printf %s "server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+        }
+
+        location /redirect_me {
+            return 301 https://youtube.com;
+        }
+
+	error_page 404 /404.html;
+    	location = /404.html {
+        	root /var/www/html/;
+    	}
+}
+" > /etc/nginx/sites-available/default
+
+service nginx restart

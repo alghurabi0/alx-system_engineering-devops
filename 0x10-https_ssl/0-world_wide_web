@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Function to display subdomain information
+display_info() {
+    domain=$1
+    subdomain=$2
+    record_type=$3
+    destination=$4
+
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
+# Check if the correct number of arguments is provided
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
+
+# Set the domain and subdomain variables
+domain=$1
+subdomain=${2:-"www"}
+
+# Loop through subdomains and display information
+for sub in "www" "lb-01" "web-01" "web-02"; do
+    if [ "$sub" == "$subdomain" ]; then
+        result=$(dig "$sub.$domain" | awk '/ANSWER SECTION:/{getline; print}' | awk '{print $4}')
+        display_info "$domain" "$sub" "A" "$result"
+    else
+        result=$(dig "$sub.$domain" | awk '/ANSWER SECTION:/{getline; print}' | awk '{print $4}')
+        display_info "$domain" "$sub" "A" "$result"
+    fi
+done

@@ -11,7 +11,7 @@ if __name__ == "__main__":
     user = requests.get(url + 'users/{}'.format(user_id))
     userData = user.text
     userData = json.loads(userData)
-    userName = userData[0].get('name')
+    userName = userData.get('name')
     todos = requests.get(url + 'todos', params={'userId': user_id})
     tasks = todos.text
     tasks = json.loads(tasks)

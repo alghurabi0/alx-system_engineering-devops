@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ return all todos of a user """
+import json
 import requests
 from sys import argv
 
@@ -7,11 +8,16 @@ from sys import argv
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/'
     user_id = argv[1]
-    user = requests.get(url + 'users/{}'.format(user_id)).json()
-    todos = requests.get(url + 'todos', params={'userId': user_id}).json()
-    completed = [task for task in todos if task.get('completed') is True]
-    print("Employee {} is done with tasks({}/{}):".format(user.get('name'),
+    user = requests.get(url + 'users/{}'.format(user_id))
+    userData = user.text
+    userData = json.loads(userData)
+    userName = userData[0].get('name')
+    todos = requests.get(url + 'todos', params={'userId': user_id})
+    tasks = todos.text
+    tasks = json.loads(tasks)
+    completed = [task for task in tasks if task.get('completed') is True]
+    print("Employee {} is done with tasks({}/{}):".format(userName,
                                                           len(completed),
-                                                          len(todos)))
+                                                          len(tasks)))
     for task in completed:
         print("\t {}".format(task.get('title')))
